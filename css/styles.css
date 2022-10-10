@@ -12,9 +12,7 @@ h1{
 	font-family: 'Courier New', Courier, monospace;
 	text-align: center;
 }
-img{
 
-}
 form{
 	width:400px;
 	padding:18px;
@@ -69,7 +67,7 @@ textarea{
 }
 .container {
 	position: relative;
-	text-align: center;	
+	text-align: center;		
   }
   
   .topleft {

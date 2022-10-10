@@ -11,26 +11,27 @@
         <img src="img\descarga.png">
         <div class="topleft">FORMULARIO</div>
     </div>
-    <form action="ejemplo.php" method="get">
-        <p>Nombre   :   <br> <input type="text" name="nombre" size="15"></p>
-        <p>Apellidos:<br> <input type="text" name="apellidos" size="30"></p>
-        <p>Correo   :   <br> <input type="email" name="correo" size="30"></p>
-        <p>Teléfono : <br> <input type="text" name="tlf" size="12"></p>
-        <p>DNI      :  <br>     <input type="text" name="dni" size="9"></p>
-        <p>IBAN     :    <br>  <input type="text" name="iban" size="34"></p>
-        <p>SWIFT    :   <br>  <input type="text" name="swift" size="10"></p>
-        <p>Usuario  : <br>  <input type="text" name="us" size="20"></p>
-        <p>Fecha Nacimiento: <input type="date" name="fn"></p>
+    <form action="ejemplo.php" id="formulario">
+        <p>Nombre   :   <br> <input type="text" name="nombre" id="nombre" required="required"  size="15"></p>
+        <p>Apellidos:<br> <input type="text" name="apellidos" id="apellidos" required="required" size="30"></p>
+        <p>Correo   :   <br> <input type="email" name="email" id="email" required="required" size="30"><span id="emailOK"></span></p>
+        <p>Teléfono : <br> <input type="number" name="tlf" id="tlf" required="required" size="12"></p>
+        <p>DNI      :  <br>     <input type="text" name="dni" id="dni" required="required" size="9"></p>
+        <p>IBAN     :    <br>  <input type="text" name="IBAN" id="IBAN" required="required" size="34"></p>
+        <p>SWIFT    :   <br>  <input type="text" name="swift" id="swift" required="required" size="10"></p>
+        <p>Usuario  : <br>  <input type="text" name="us" id="us" required="required" size="20"></p>
+        <p>Fecha Nacimiento: <input type="date" required="required" id="fn" name="fn"></p>
         <p>Sexo:
-            <input type="radio" name="hmo" value="h"> Hombre
-            <input type="radio" name="hmo" value="m"> Mujer
-            <input type="radio" name="hmo" value="o"> Otro
+            <input type="radio" name="hmo" required="required"  value="h"> Hombre
+            <input type="radio" name="hmo" required="required" value="m"> Mujer
+            <input type="radio" name="hmo" required="required" value="o"> Otro
         </p>
         <p>
             <input type="submit" value="Enviar">
             <input type="reset" value="Borrar">
         </p>
     </form>
+    <script src="js\myscript.js"></script>
 </body>
 
 </html>

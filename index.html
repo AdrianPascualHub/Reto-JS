@@ -11,27 +11,117 @@
         <img src="img\descarga.png">
         <div class="topleft">FORMULARIO</div>
     </div>
-    <form action="ejemplo.php" id="formulario">
-        <p>Nombre   :   <br> <input type="text" name="nombre" id="nombre" required="required"  size="15"></p>
-        <p>Apellidos:<br> <input type="text" name="apellidos" id="apellidos" required="required" size="30"></p>
-        <p>Correo   :   <br> <input type="email" name="email" id="email" required="required" size="30"><span id="emailOK"></span></p>
-        <p>Teléfono : <br> <input type="number" name="tlf" id="tlf" required="required" size="12"></p>
-        <p>DNI      :  <br>     <input type="text" name="dni" id="dni" required="required" size="9"></p>
-        <p>IBAN     :    <br>  <input type="text" name="IBAN" id="IBAN" required="required" size="34"></p>
-        <p>SWIFT    :   <br>  <input type="text" name="swift" id="swift" required="required" size="10"></p>
-        <p>Usuario  : <br>  <input type="text" name="us" id="us" required="required" size="20"></p>
-        <p>Fecha Nacimiento: <input type="date" required="required" id="fn" name="fn"></p>
-        <p>Sexo:
-            <input type="radio" name="hmo" required="required"  value="h"> Hombre
-            <input type="radio" name="hmo" required="required" value="m"> Mujer
-            <input type="radio" name="hmo" required="required" value="o"> Otro
-        </p>
-        <p>
-            <input type="submit" value="Enviar">
-            <input type="reset" value="Borrar">
-        </p>
-    </form>
-    <script src="js\myscript.js"></script>
+	<main>
+		<form action="ejemplo.php" class="formulario" id="formulario">
+
+            <!-- Grupo: Nombre -->
+			<div class="formulario__grupo" id="grupo__nombre">
+				<label for="nombre" class="formulario__label">Nombre:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Adri">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+            <!-- Grupo: Apellidos -->
+			<div class="formulario__grupo" id="grupo__apellido">
+				<label for="apellido" class="formulario__label">Apellido:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Pascual">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El apellido tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+			<!-- Grupo: Usuario -->
+			<div class="formulario__grupo" id="grupo__usuario">
+				<label for="usuario" class="formulario__label">Usuario:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="PasKual123">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Correo Electronico -->
+			<div class="formulario__grupo" id="grupo__correo">
+				<label for="correo" class="formulario__label">Correo:</label>
+				<div class="formulario__grupo-input">
+					<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">Formato correo por favor.</p>
+			</div>
+
+			<!-- Grupo: Teléfono -->
+			<div class="formulario__grupo" id="grupo__telefono">
+				<label for="telefono" class="formulario__label">Teléfono:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="685493632">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+			</div>
+
+            <!-- Grupo: DNI -->
+			<div class="formulario__grupo" id="dni">
+				<label for="dni" class="formulario__label">Dni:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="dni" id="dni" placeholder="29502362D">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+
+            <!-- Grupo: IBAN -->
+			<div class="formulario__grupo" id="iban">
+				<label for="iban" class="formulario__label">IBAN:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="iban" id="iban">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+
+            <!-- Grupo: swift -->
+			<div class="formulario__grupo" id="swift">
+				<label for="swift" class="formulario__label">SWIFT:</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="swift" id="swift">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+
+            <!-- Grupo: Fcnac -->
+			<div class="formulario__grupo" id="fecnac">
+				<label for="fecnac" class="formulario__label">Fecha Nacimiento:</label>
+				<div class="formulario__grupo-input">
+					<input type="date" class="formulario__input" name="fecnac" id="fecnac">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras.</p>
+			</div>
+
+            <p>Sexo:
+                <input type="radio" name="hmo"   value="h"> Hombre
+                <input type="radio" name="hmo"  value="m"> Mujer
+                <input type="radio" name="hmo"  value="o"> Otro
+            </p>
+
+			<div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> Formulario incorrecto. </p>
+			</div>
+
+			<div class="formulario__grupo formulario__grupo-btn-enviar">
+				<button type="submit" class="formulario__btn">Enviar</button>
+				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                <input type="reset" value="Borrar">
+			</div>
+		</form>
+	</main>
+
+	<script src="js\myscript.js"></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

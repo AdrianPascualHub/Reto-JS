@@ -1,92 +1,81 @@
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("formulario").addEventListener('submit', validarFormulario);
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
+
+const expresiones = {
+	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,  
+    apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,	
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	telefono: /^\d{9,14}$/ 
+}
+
+const campos = {
+	usuario: false,
+	nombre: false,	
+	correo: false,
+	telefono: false
+}
+
+const validarFormulario = (e) => {
+	switch (e.target.name) {
+		case "usuario":
+			validarCampo(expresiones.usuario, e.target, 'usuario');
+		break;
+		case "nombre":
+			validarCampo(expresiones.nombre, e.target, 'nombre');
+		break;
+        case "apellido":
+			validarCampo(expresiones.apellido, e.target, 'apellido');
+		break;		
+		case "correo":
+			validarCampo(expresiones.correo, e.target, 'correo');
+		break;
+		case "telefono":
+			validarCampo(expresiones.telefono, e.target, 'telefono');
+		break;
+	}
+}
+
+const validarCampo = (expresion, input, campo) => {
+	if(expresion.test(input.value)){
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+		campos[campo] = false;
+	}
+}
+
+
+inputs.forEach((input) => {
+	input.addEventListener('keyup', validarFormulario);
+	input.addEventListener('blur', validarFormulario);
 });
 
-function validarFormulario(evento) {
-    evento.preventDefault();
-    var telefono = document.getElementById('tlf').value;
-    
-    if (telefono.length < 9) {
-        alert('El Telefono no es válido');
-        return;
-    }
-    //No funciona no se porque
-    /**var dni = document.getElementById('dni').value;
-    var numero, let, letra;
-    var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+formulario.addEventListener('submit', (e) => {
+	
 
-    dni = dni.toUpperCase();
+	const terminos = document.getElementById('terminos');
+	if(campos.usuario && campos.nombre && campos.apellido && campos.correo && campos.telefono ){
+		formulario.reset();
 
-    if(expresion_regular_dni.test(dni) === true){
-        numero = dni.substr(0,dni.length-1);
-        numero = numero.replace('X', 0);
-        numero = numero.replace('Y', 1);
-        numero = numero.replace('Z', 2);
-        let = dni.substr(dni.length-1, 1);
-        numero = numero % 23;
-        letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-        letra = letra.substring(numero, numero+1);
-        if (letra != let) {
-            alert('Dni erroneo, la letra del NIF no se corresponde');
-            return false;
-        }else{
-            alert('Dni correcto');
-            return true;
-        }
-    }else{
-        alert('Dni erroneo, formato no válido');
-        return false;
-    }**/
+		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
+		setTimeout(() => {
+			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
+		}, 5000);
 
-    this.submit();
-}
-function fn_ValidateIBAN(IBAN) {
-
-    var IBAN = document.getElementById('IBAN').value;
-    IBAN = IBAN.toUpperCase();
-    
-    IBAN = IBAN.trim();
-    IBAN = IBAN.replace(/\s/g, ""); 
-
-    var letra1,letra2,num1,num2;
-    var isbanaux;
-    var numeroSustitucion;
-    
-    if (IBAN.length != 24) {
-        return false;
-    }
-
-    
-    letra1 = IBAN.substring(0, 1);
-    letra2 = IBAN.substring(1, 2);
-    num1 = getnumIBAN(letra1);
-    num2 = getnumIBAN(letra2);
-    
-    isbanaux = String(num1) + String(num2) + IBAN.substring(2);
-    
-    isbanaux = isbanaux.substring(6) + isbanaux.substring(0,6);
-
-   
-    resto = modulo97(isbanaux);
-    if (resto == 1){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-function modulo97(iban) {
-    var parts = Math.ceil(iban.length/7);
-    var remainer = "";
-
-    for (var i = 1; i <= parts; i++) {
-        remainer = String(parseFloat(remainer+iban.substr((i-1)*7, 7))%97);
-    }
-
-    return remainer;
-}
-
-function getnumIBAN(letra) {
-    ls_letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return ls_letras.search(letra) + 10;
-}
+		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+			icono.classList.remove('formulario__grupo-correcto');
+		});
+	} else {
+		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+	}
+});
